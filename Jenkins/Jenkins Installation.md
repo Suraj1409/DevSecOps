@@ -24,6 +24,12 @@ Jenkins provides its own repository for easier installation and updates. Add the
     wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
     sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
+## Add the GPG Key:
+
+Run the following command to add the GPG key for the Jenkins repository
+
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
+
 ## Install Jenkins:
 
 Update the package list again and install Jenkins
@@ -43,15 +49,14 @@ Enable the Jenkins service to start on system boot
 
     sudo systemctl enable jenkins
 
-## Open Firewall Port:
+## Check EC2 Security Group Rules:
 
-Allow incoming traffic on port 8080 (default Jenkins port) through the firewall
-
-    sudo ufw allow 8080
+Make sure that your EC2 instance's security group allows incoming traffic on port 8080. Go to the AWS Management Console, navigate to your EC2 instance, and check the associated security group's inbound rules. There should be a rule allowing incoming traffic on port 8080 from your IP range (or from anywhere, depending on your security policy). If not, add a rule accordingly.
     
 ## Access Jenkins Web UI:
 
-Open a web browser and navigate to http://your-instance-ip:8080. You should see the Jenkins setup wizard. Retrieve the initial admin password by running:
+Open a web browser and navigate to http://your-instance-ip:8080.
+You should see the Jenkins setup wizard. Retrieve the initial admin password by running:
 
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
     
@@ -61,10 +66,10 @@ Copy the password and paste it into the Jenkins setup wizard to proceed.
 
 In the Jenkins setup, choose the option to install recommended plugins. This will install the necessary plugins for basic functionality.
 
-Create Admin User:
+## Create Admin User:
 Create an admin user account with your desired credentials.
 
-Finish Setup:
+## Finish Setup:
 Follow the remaining steps in the setup wizard to complete the installation.
 
 Jenkins should now be installed and running on your AWS EC2 instance. You can configure Jenkins jobs and manage your CI/CD workflows through the Jenkins web interface.

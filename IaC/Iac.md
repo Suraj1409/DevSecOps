@@ -50,7 +50,7 @@ Bash
 
 Once the autocomplete support is installed, you will need to restart your shell.
 
-
+=================================================================================================================================
 
 ## Install Git:
 Use the following command to install Git:

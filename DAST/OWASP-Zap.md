@@ -44,3 +44,18 @@ You can now launch OWASP ZAP by searching for it in your applications menu or by
 
     /opt/ZAP_2.13.0/zap.sh
 
+
+
+### Run ZAP in Daemon Mode:
+
+    /opt/ZAP_2.10.0/zap.sh -daemon -host 0.0.0.0 -port 8080
+
+This starts ZAP in daemon mode, allowing you to interact with it through its API and web interface. You can access the ZAP web interface by navigating to 
+http://<your-ec2-instance-ip>:8080 in your web browser.
+
+### Run ZAP Inline:
+If you're not planning to use the ZAP GUI or web interface, you can run ZAP inline without starting its GUI components. This is suitable for automated scanning or scripting purposes.
+
+    /opt/ZAP_2.10.0/zap.sh -cmd
+    
+This command runs ZAP in command-line mode, allowing you to use its various command-line options for automated scanning and testing.

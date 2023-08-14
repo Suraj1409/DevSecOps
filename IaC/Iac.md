@@ -40,15 +40,17 @@ Verify that the installation worked by opening a new terminal session and listin
 ## Enable tab completion
 If you use either Bash or Zsh, you can enable tab completion for Terraform commands. To enable autocomplete, first ensure that a config file exists for your chosen shell.
 
-
 Bash
-        touch ~/.bashrc
-Copy
-Then install the autocomplete package.
+    
+    touch ~/.bashrc
 
- terraform -install-autocomplete
-Copy
+## Then install the autocomplete package.
+
+    terraform -install-autocomplete
+
 Once the autocomplete support is installed, you will need to restart your shell.
+
+
 
 ## Install Git:
 Use the following command to install Git:
@@ -60,10 +62,6 @@ After the installation is complete, you can verify that Git is installed by chec
 
     git --version
 
-
-
-
-abc
 
 
 

@@ -65,3 +65,4 @@ Replace 8080 with the desired local port. This command forwards the ZAP Web UI p
     Open a web browser on your local machine and navigate to:
 
         http://localhost:8080/
+![t1](https://github.com/shubnimkar/DevSecOps_HPCSA/assets/46809421/49ae288f-0f20-4841-966a-3b0beb01efce)

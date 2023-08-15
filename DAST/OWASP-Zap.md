@@ -10,7 +10,7 @@ Start by updating and upgrading package lists to ensure you have the latest pack
 ## Install Java:
 OWASP ZAP requires Java to run. Install OpenJDK with the following command:
 
-    sudo apt install openjdk-11-jre-headless -y
+    sudo apt install default-jre -y
 
 
 ## Download and Install OWASP ZAP:
@@ -27,23 +27,11 @@ You can download and install OWASP ZAP using the following steps:
 
       sudo mv ZAP_2.13.0 /opt/
 
-
-## Create a Desktop Shortcut (Optional):
-You can create a desktop shortcut for ZAP for easy access:
-
-- Create a `.desktop` file:
-
-      echo -e '[Desktop Entry]\nVersion=1.0\nName=OWASP ZAP\nExec=/opt/ZAP_2.13.0/zap.sh\nIcon=/opt/ZAP_2.13.0/zap.ico\nTerminal=false\nType=Application\nCategories=Utility;Application;' | sudo tee /usr/share/applications/zap.desktop
-
-- Make the `.desktop` file executable:
-
-      sudo chmod +x /usr/share/applications/zap.desktop
      
 ## Run OWASP ZAP:
 You can now launch OWASP ZAP by searching for it in your applications menu or by using the terminal:
 
     /opt/ZAP_2.13.0/zap.sh
-
 
 
 ### Run ZAP in Daemon Mode:
@@ -59,3 +47,21 @@ If you're not planning to use the ZAP GUI or web interface, you can run ZAP inli
     /opt/ZAP_2.10.0/zap.sh -cmd
     
 This command runs ZAP in command-line mode, allowing you to use its various command-line options for automated scanning and testing.
+
+## For WEBUI
+
+- Access ZAP Web UI:
+
+To access the ZAP Web UI, you need to set up an SSH tunnel to forward the remote ZAP Web UI port to your local machine.
+Keep your SSH session open and open a new terminal window on your local machine.
+
+In the new terminal, create the SSH tunnel:
+
+    ssh -i /path/to/your-key.pem -L 8080:localhost:8080 ubuntu@your-ec2-instance-ip -N
+
+Replace 8080 with the desired local port. This command forwards the ZAP Web UI port (default is 8080) from the EC2 instance to your local machine.
+
+- Access ZAP Web UI:
+    Open a web browser on your local machine and navigate to:
+
+        http://localhost:8080/

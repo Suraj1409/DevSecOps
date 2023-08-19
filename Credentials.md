@@ -26,3 +26,8 @@ Jenkins:
 Git access token : 
 
     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    
+
+Webgoat: 
+
+    User: webgoat
+    password: webgoat12

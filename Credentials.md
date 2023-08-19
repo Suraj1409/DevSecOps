@@ -22,3 +22,7 @@ Jenkins:
 
     User: shubham
     password: jenkins@12345
+
+Git access token : 
+
+    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    

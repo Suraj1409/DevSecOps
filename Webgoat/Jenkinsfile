@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    
+    stages {
+
+        stage('Delete Existing Directory') {
+            steps {
+                sh 'rm -rf WebGoat'
+    }
+}
+
+        stage('Clone Repository') {
+            steps {
+                // Clone your repository
+                sh 'git clone https://github.com/shubnimkar/WebGoat.git'
+            }
+        }
+        
+        stage('Run TruffleHog') {
+            steps {
+                dir('WebGoat')
+                {
+                    // Change to the cloned repository directory
+                    // Example: dir('my-repo')
+
+                    // Install TruffleHog dependencies (if not already installed)
+                    //sh 'pip3 install truffleHog'
+
+                    // Run TruffleHog
+                   // sh 'trufflehog3 -f json -o truffelhog_output.json || true '
+                    //sh './truffelhog_report.sh'
+                    sh 'trufflehog --regex --entropy=False --json .'
+
+                }
+            }
+        }
+        stage ('Software composition analysis') {
+            steps {
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'OWASP-DC'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+		    sh './dependency_check_report.sh'
+            }
+        }
+
+    }
+}
